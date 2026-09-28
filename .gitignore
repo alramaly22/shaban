@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+db.sqlite3
+staticfiles/
+venv/
+.env
+
+# media/ is intentionally NOT ignored - see README's "Updating
+# transformation photos" section. Uploads are done locally and
+# committed/pushed to GitHub so Vercel's deployment bundle includes
+# them (Vercel's filesystem can't be written to at runtime).

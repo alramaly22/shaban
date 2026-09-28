@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy | Captain Shaban{% endblock %}
+{% block description %}Privacy Policy for the Captain Shaban Faisal Tharwat online coaching website.{% endblock %}
+
+{% block content %}
+<section class="policy">
+  <div class="container policy__inner">
+    <p class="eyebrow">Privacy Policy</p>
+    <h1 class="policy__title">Privacy Policy</h1>
+    <p class="policy__intro">
+      This page explains what information this website collects, why it is collected, and how it is used.
+    </p>
+
+    <h2>Information we collect</h2>
+    <p>When you apply for a coaching plan at checkout, we collect the details the form asks for: your name, email, phone number, age, gender, main goal, training experience, preferred training location, and any notes you add. We also collect your selected plan and chosen payment method.</p>
+    <p>When you send a message through the Contact page, we collect your name, email, optional phone number, and your message.</p>
+    <p>We do not collect or store payment card numbers, expiry dates, or CVV codes anywhere on this site.</p>
+
+    <h2>How we use your information</h2>
+    <ul class="policy__list">
+      <li>To review and follow up on your coaching application</li>
+      <li>To communicate with you about your plan, your training, and your account</li>
+      <li>To respond to messages sent through the Contact page</li>
+      <li>To keep basic records of orders and communications</li>
+    </ul>
+    <p>We do not sell your information to third parties.</p>
+
+    <h2>Cookies</h2>
+    <p>This site uses only the minimal cookies needed for it to function - for example, keeping you logged into the admin area and protecting forms from cross-site request forgery. We don't use advertising or tracking cookies.</p>
+
+    <h2>Data storage</h2>
+    <p>Submitted information is stored in a database and is accessible only to the site administrator. We take reasonable steps to keep it secure, but no method of storage or transmission is 100% secure.</p>
+
+    <h2>Third-party services</h2>
+    <p>Payment processing, once a live payment gateway is connected, will be handled directly by that provider under its own privacy policy - this site does not receive or store your card details at any point.</p>
+
+    <h2>Your choices</h2>
+    <p>You can ask to see, correct, or delete the information we hold about you at any time by reaching out through the <a href="{% url 'coaching:contact' %}">Contact page</a>.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>This policy may be updated from time to time. The latest version is always available on this page.</p>
+
+    {% include "coaching/_policy_contact.html" %}
+  </div>
+</section>
+{% endblock %}

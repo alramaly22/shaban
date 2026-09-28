@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load static humanize %}
+
+{% block title %}Checkout - {{ plan.name }} | Captain Shaban{% endblock %}
+
+{% block content %}
+<section class="checkout">
+  <div class="container checkout__grid">
+
+    <form method="post" class="checkout__form" id="checkoutForm" novalidate>
+      {% csrf_token %}
+      <p class="eyebrow">Your Information</p>
+      <h1 class="checkout__title">Complete your application</h1>
+
+      {% if form.non_field_errors %}
+        <div class="alert alert--error">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <div class="field-row">
+        <div class="field">
+          <label for="{{ form.customer_name.id_for_label }}">Full Name <span class="req">*</span></label>
+          {{ form.customer_name }}
+          {% if form.customer_name.errors %}<span class="field__error">{{ form.customer_name.errors.0 }}</span>{% endif %}
+        </div>
+      </div>
+
+      <div class="field-row field-row--2">
+        <div class="field">
+          <label for="{{ form.email.id_for_label }}">Email <span class="req">*</span></label>
+          {{ form.email }}
+          {% if form.email.errors %}<span class="field__error">{{ form.email.errors.0 }}</span>{% endif %}
+        </div>
+        <div class="field">
+          <label for="{{ form.phone.id_for_label }}">Phone Number <span class="req">*</span></label>
+          {{ form.phone }}
+          {% if form.phone.errors %}<span class="field__error">{{ form.phone.errors.0 }}</span>{% endif %}
+        </div>
+      </div>
+
+      <div class="field-row field-row--2">
+        <div class="field">
+          <label for="{{ form.age.id_for_label }}">Age <span class="req">*</span></label>
+          {{ form.age }}
+          {% if form.age.errors %}<span class="field__error">{{ form.age.errors.0 }}</span>{% endif %}
+        </div>
+        <div class="field">
+          <label for="{{ form.gender.id_for_label }}">Gender <span class="req">*</span></label>
+          {{ form.gender }}
+          {% if form.gender.errors %}<span class="field__error">{{ form.gender.errors.0 }}</span>{% endif %}
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="{{ form.main_goal.id_for_label }}">Main Goal <span class="req">*</span></label>
+          {{ form.main_goal }}
+          {% if form.main_goal.errors %}<span class="field__error">{{ form.main_goal.errors.0 }}</span>{% endif %}
+        </div>
+      </div>
+
+      <div class="field-row field-row--2">
+        <div class="field">
+          <label for="{{ form.training_experience.id_for_label }}">Training Experience <span class="req">*</span></label>
+          {{ form.training_experience }}
+          {% if form.training_experience.errors %}<span class="field__error">{{ form.training_experience.errors.0 }}</span>{% endif %}
+        </div>
+        <div class="field">
+          <label for="{{ form.training_location.id_for_label }}">Preferred Training Location <span class="req">*</span></label>
+          {{ form.training_location }}
+          {% if form.training_location.errors %}<span class="field__error">{{ form.training_location.errors.0 }}</span>{% endif %}
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="{{ form.notes.id_for_label }}">Notes <span class="optional">(optional)</span></label>
+          {{ form.notes }}
+        </div>
+      </div>
+
+      <p class="eyebrow checkout__payment-title">Payment Method</p>
+
+      {% with selected=form.payment_method.value|default:"CARD" %}
+      <div class="payment-methods">
+        <label class="payment-method">
+          <input type="radio" name="payment_method" value="CARD" {% if selected == "CARD" %}checked{% endif %}>
+          <span class="payment-method__label">
+            <span>Card Payment</span>
+            <span class="payment-method__icons">VISA &nbsp;•&nbsp; Mastercard</span>
+          </span>
+        </label>
+        <label class="payment-method">
+          <input type="radio" name="payment_method" value="FAWRY" {% if selected == "FAWRY" %}checked{% endif %}>
+          <span class="payment-method__label"><span>Fawry</span></span>
+        </label>
+        <label class="payment-method">
+          <input type="radio" name="payment_method" value="VODAFONE_CASH" {% if selected == "VODAFONE_CASH" %}checked{% endif %}>
+          <span class="payment-method__label"><span>Vodafone Cash</span></span>
+        </label>
+        <label class="payment-method">
+          <input type="radio" name="payment_method" value="INSTAPAY" {% if selected == "INSTAPAY" %}checked{% endif %}>
+          <span class="payment-method__label"><span>InstaPay</span></span>
+        </label>
+      </div>
+      {% endwith %}
+
+      <!--
+        IMPLEMENTATION NOTE:
+        The card fields below are a visual prototype only. No card
+        number or CVV is submitted with this form (see forms.py -
+        CheckoutForm intentionally excludes them). Before going live,
+        this entire panel must be replaced by the chosen Egyptian
+        payment gateway's hosted or tokenized checkout UI, so that
+        raw card data never touches this Django application.
+      -->
+      <div class="card-panel" id="cardPanel">
+        <div class="field">
+          <label>Cardholder Name</label>
+          <input type="text" placeholder="Name on card" disabled>
+        </div>
+        <div class="field">
+          <label>Card Number</label>
+          <input type="text" placeholder="•••• •••• •••• ••••" disabled>
+        </div>
+        <div class="field-row field-row--2">
+          <div class="field">
+            <label>Expiry Date</label>
+            <input type="text" placeholder="MM / YY" disabled>
+          </div>
+          <div class="field">
+            <label>CVV</label>
+            <input type="text" placeholder="•••" disabled>
+          </div>
+        </div>
+        <p class="card-panel__note">Payment fields are disabled in this prototype. A live payment gateway will be connected before real card data is collected.</p>
+      </div>
+
+      {% if form.payment_method.errors %}<span class="field__error">{{ form.payment_method.errors.0 }}</span>{% endif %}
+
+      <button type="submit" class="btn btn--accent btn--lg checkout__submit" id="submitBtn">
+        <span class="btn__label">Complete Registration</span>
+      </button>
+    </form>
+
+    <aside class="checkout__summary">
+      <p class="eyebrow">Order Summary</p>
+      <h2>{{ plan.name }} Coaching</h2>
+      {% if plan.description %}<p class="checkout__summary-desc">{{ plan.description }}</p>{% endif %}
+
+      <ul class="checkout__summary-features">
+        {% for feature in plan.feature_list %}
+        <li>{{ feature }}</li>
+        {% endfor %}
+      </ul>
+
+      <div class="checkout__summary-price">
+        <span class="checkout__old-price">EGP {{ plan.original_price|floatformat:0|intcomma }}</span>
+        <span class="checkout__new-price">EGP {{ plan.discounted_price|floatformat:0|intcomma }}</span>
+      </div>
+      <p class="checkout__save">You save EGP {{ plan.savings|floatformat:0|intcomma }}</p>
+
+      <div class="checkout__total">
+        <span>Total due</span>
+        <strong>EGP {{ plan.discounted_price|floatformat:0|intcomma }}</strong>
+      </div>
+    </aside>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.getElementById('checkoutForm').addEventListener('submit', function () {
+  var btn = document.getElementById('submitBtn');
+  btn.classList.add('is-processing');
+  btn.querySelector('.btn__label').textContent = 'Processing...';
+  btn.disabled = true;
+});
+</script>
+{% endblock %}

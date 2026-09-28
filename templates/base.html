@@ -1,0 +1,86 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Captain Shaban Faisal Tharwat | Online Fitness Coaching{% endblock %}</title>
+<meta name="description" content="{% block description %}Personalized online fitness coaching by Captain Shaban Faisal Tharwat. Training, nutrition guidance, accountability and long-term progress.{% endblock %}">
+
+<meta property="og:title" content="Captain Shaban | Online Fitness Coaching">
+<meta property="og:description" content="Personalized online coaching built around your goals, your lifestyle and your progress.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="{% url 'coaching:home' %}" class="navbar__brand">Captain <span>Shaban</span></a>
+
+    <nav class="navbar__links" id="navLinks">
+      <a href="{% url 'coaching:home' %}#coaching">Coaching</a>
+      <a href="{% url 'coaching:home' %}#how-it-works">How It Works</a>
+      <a href="{% url 'coaching:home' %}#results">Results</a>
+      <a href="{% url 'coaching:home' %}#faq">FAQ</a>
+      <a href="{% url 'coaching:home' %}#contact">Contact</a>
+    </nav>
+
+    <a href="{% url 'coaching:home' %}#coaching" class="btn btn--accent navbar__cta">Start Coaching</a>
+
+    <button class="navbar__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="{% url 'coaching:home' %}#coaching">Coaching</a>
+  <a href="{% url 'coaching:home' %}#how-it-works">How It Works</a>
+  <a href="{% url 'coaching:home' %}#results">Results</a>
+  <a href="{% url 'coaching:home' %}#faq">FAQ</a>
+  <a href="{% url 'coaching:home' %}#contact">Contact</a>
+  <a href="{% url 'coaching:home' %}#coaching" class="btn btn--accent">Start Coaching</a>
+</div>
+
+<main>
+{% if messages %}
+  <div class="container">
+    {% for message in messages %}
+      <div class="alert alert--{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">Captain <span>Shaban</span></div>
+    <p class="footer__tagline">Personalized online coaching for training, nutrition and long-term progress.</p>
+    <nav class="footer__links">
+      <a href="{% url 'coaching:home' %}#coaching">Coaching</a>
+      <a href="{% url 'coaching:contact' %}">Contact</a>
+      <a href="{% url 'coaching:privacy_policy' %}">Privacy Policy</a>
+      <a href="{% url 'coaching:refund_policy' %}">Refund Policy</a>
+      <a href="{% url 'coaching:terms' %}">Terms &amp; Conditions</a>
+    </nav>
+    <div class="footer__contact">
+      <a href="tel:{{ CONTACT.phone_intl }}" dir="ltr">{{ CONTACT.phone }}</a>
+      <a href="mailto:{{ CONTACT.email }}">{{ CONTACT.email }}</a>
+      <span dir="rtl">{{ CONTACT.address }}</span>
+    </div>
+    <p class="footer__note">This site does not provide medical advice. Consult a physician before beginning any training or nutrition program.</p>
+    <p class="footer__copy">&copy; {% now "Y" %} Captain Shaban Faisal Tharwat. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="{% static 'js/main.js' %}"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

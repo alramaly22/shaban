@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Application Received | Captain Shaban{% endblock %}
+
+{% block content %}
+<section class="confirmation">
+  <div class="container confirmation__inner">
+    <div class="confirmation__icon">
+      <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.6"/><path d="M15 24.5 21 30l12-13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <p class="eyebrow">Application Received</p>
+    <h1>Your coaching application has been received successfully.</h1>
+
+    <div class="confirmation__card">
+      <div class="confirmation__row">
+        <span>Selected Plan</span>
+        <strong>{{ order.plan.name }}</strong>
+      </div>
+      <div class="confirmation__row">
+        <span>Amount</span>
+        <strong>{{ order.currency }} {{ order.amount|floatformat:0|intcomma }}</strong>
+      </div>
+      <div class="confirmation__row">
+        <span>Order ID</span>
+        <strong>{{ order.order_id }}</strong>
+      </div>
+      <div class="confirmation__row">
+        <span>Payment Status</span>
+        <strong class="status status--{{ order.payment_status|lower }}">{{ order.get_payment_status_display }}</strong>
+      </div>
+    </div>
+
+    <p class="confirmation__note">Our team will contact you with the next step.</p>
+    <a href="{% url 'coaching:home' %}" class="btn btn--outline">Back to Home</a>
+  </div>
+</section>
+{% endblock %}

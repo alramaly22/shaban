@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Refund Policy | Captain Shaban{% endblock %}
+{% block description %}Refund Policy for Captain Shaban Faisal Tharwat online coaching plans.{% endblock %}
+
+{% block content %}
+<section class="policy">
+  <div class="container policy__inner">
+    <p class="eyebrow">Refund Policy</p>
+    <h1 class="policy__title">Refund Policy</h1>
+
+    <p class="policy__intro">
+      We want you to be confident when you start coaching. This page explains how refunds work for our online coaching plans.
+    </p>
+
+    <h2>Coaching plans</h2>
+    <p>Our coaching plans (3, 6 and 12 months) are personalized services. Once your assessment is reviewed and your training and nutrition plan has been prepared for you, the coach's time and work have already been delivered, so payments are generally non-refundable after that point.</p>
+
+    <h2>When you can request a refund</h2>
+    <ul class="policy__list">
+      <li>You were charged more than once for the same plan.</li>
+      <li>You paid, but the coach has not started your assessment or prepared your plan yet.</li>
+      <li>A technical problem on our side prevented you from receiving the service.</li>
+    </ul>
+
+    <h2>How to request a refund</h2>
+    <p>Contact us by phone, WhatsApp or email using the details below and include your full name, the email or phone number you used at checkout, your Order ID, and the reason for your request. We will review it and reply as soon as possible.</p>
+
+    <h2>Approved refunds</h2>
+    <p>If your refund is approved, it is returned using the same payment method you used when paying, or another method we agree on with you. The time it takes to reach you depends on your payment provider.</p>
+
+    <h2>Changing your plan</h2>
+    <p>If you would like to change or extend your plan instead of requesting a refund, reach out to us and we will discuss the available options with you.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>This policy may be updated from time to time. The latest version is always available on this page.</p>
+
+    {% include "coaching/_policy_contact.html" %}
+  </div>
+</section>
+{% endblock %}

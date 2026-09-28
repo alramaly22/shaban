@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Terms &amp; Conditions | Captain Shaban{% endblock %}
+{% block description %}Terms and Conditions for using the Captain Shaban Faisal Tharwat online coaching website and services.{% endblock %}
+
+{% block content %}
+<section class="policy">
+  <div class="container policy__inner">
+    <p class="eyebrow">Terms &amp; Conditions</p>
+    <h1 class="policy__title">Terms &amp; Conditions</h1>
+
+    <p class="policy__intro">
+      By using this website or applying for a coaching plan, you agree to the terms below. Please read them carefully.
+    </p>
+
+    <h2>Our service</h2>
+    <p>Captain Shaban Faisal Tharwat provides personalized online fitness coaching, including training programs, nutrition guidance, regular check-ins and direct coach support for the duration of the plan you choose.</p>
+
+    <h2>Applying and payment</h2>
+    <p>You apply for a plan by completing the checkout form with accurate information. Prices are shown in Egyptian pounds (EGP). Your coaching begins after your application is received and payment is confirmed by the coach.</p>
+
+    <h2>Your responsibilities</h2>
+    <ul class="policy__list">
+      <li>Provide accurate and complete information about your goals, health, experience and lifestyle.</li>
+      <li>Follow the plan as instructed and share your progress in your check-ins.</li>
+      <li>Tell your coach right away about any injury, pain or change in your health.</li>
+      <li>Keep your plan and materials for your personal use only, and do not resell or share them.</li>
+    </ul>
+
+    <h2>Health disclaimer</h2>
+    <p>Coaching is not medical advice. Consult a physician before starting any training or nutrition program, especially if you have a medical condition, injury or are pregnant. You train and follow nutrition guidance at your own risk, and results vary from person to person and depend on your effort and consistency.</p>
+
+    <h2>Refunds</h2>
+    <p>Refunds are handled according to our <a href="{% url 'coaching:refund_policy' %}">Refund Policy</a>.</p>
+
+    <h2>Privacy</h2>
+    <p>How we collect and use your information is explained in our <a href="{% url 'coaching:privacy_policy' %}">Privacy Policy</a>.</p>
+
+    <h2>Website content</h2>
+    <p>All text, images and materials on this website belong to Captain Shaban Faisal Tharwat and may not be copied or reused without permission.</p>
+
+    <h2>Changes to these terms</h2>
+    <p>We may update these terms from time to time. The latest version is always available on this page.</p>
+
+    {% include "coaching/_policy_contact.html" %}
+  </div>
+</section>
+{% endblock %}
